@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Brand Landing | Organic Minimal — Sunset Coastline</title>
-  <meta name="description" content="自由、自然、ゆっくり流れる時間。映像クリエイターのブランドサイト。" />
+  <title>U-channel | Modern Editorial & Nature</title>
+  <meta name="description" content="静寂を、旅する。キャンピングカーと日本の四季を記録するシネマティック・メディア。" />
 
-  <!-- Google Fonts (Mincho / Serif) -->
+  <!-- Fonts: Serif (JP) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Pick one: Noto Serif JP / Shippori Mincho -->
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,299 +18,520 @@
       theme: {
         extend: {
           colors: {
-            ink: "#333333",
-            sand: "#C4A484",
-            paper: "#ffffff"
+            ink: "#1f1f1f",
+            paper: "#ffffff",
+            linen: "#f9f9f9",
+            fog: "#efefef",
+            moss: "#1f4d3a",     // deep forest green (minimal use)
+            sunset: "#c76a2a",   // sunset orange (minimal use)
           },
           fontFamily: {
-            serifjp: ['"Shippori Mincho"', "serif"]
+            serif: ['"Zen Old Mincho"', '"Noto Serif JP"', "serif"],
+            serif2: ['"Noto Serif JP"', "serif"],
+          },
+          letterSpacing: {
+            wide2: ".22em"
+          },
+          boxShadow: {
+            soft: "0 18px 60px rgba(0,0,0,.08)",
+            thin: "0 10px 40px rgba(0,0,0,.06)"
           }
         }
       }
     }
   </script>
 
-  <!-- AOS (Animate on Scroll) -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
 
   <style>
-    /* Minimal, organic motion */
     html { scroll-behavior: smooth; }
-    body { background: #ffffff; color:#333333; }
-    ::selection { background: rgba(196,164,132,.25); }
+    body { background:#ffffff; color:#1f1f1f; }
+    ::selection { background: rgba(31,77,58,.18); }
 
-    /* Slow parallax-like drift for the hero media (very subtle) */
-    .hero-media {
-      transform: translateZ(0);
-      will-change: transform;
+    /* Editorial vertical writing */
+    .tategaki {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
     }
 
-    /* Elegant iframe frame without “decorative” look */
-    .video-frame {
+    /* Subtle film-grain without looking “decorative” */
+    .grain::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url("https://picsum.photos/800/800?blur=2"); /* placeholder texture */
+      opacity:.05;
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+
+    /* Ultra-thin editorial rule */
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(31,31,31,.0), rgba(31,31,31,.35), rgba(31,31,31,.0));
+    }
+
+    /* Video frame that feels like print margin */
+    .frame {
+      border: 1px solid rgba(31,31,31,.10);
       background: #fff;
-      border: 1px solid rgba(51,51,51,.10);
-      border-radius: 18px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.10);
+      border-radius: 22px;
       overflow: hidden;
     }
 
-    /* AOS default feels snappy; soften it */
-    [data-aos] {
-      transition-timing-function: cubic-bezier(.2,.8,.2,1) !important;
+    /* Slight “paper” depth */
+    .paper-card{
+      border: 1px solid rgba(31,31,31,.08);
+      box-shadow: 0 14px 55px rgba(0,0,0,.06);
+      border-radius: 26px;
+      background: #fff;
     }
   </style>
 </head>
 
-<body class="font-serifjp antialiased">
-  <!-- Header (logo only) -->
-  <header class="fixed top-0 left-0 right-0 z-30 pointer-events-none">
-    <div class="mx-auto max-w-5xl px-6 sm:px-10 py-6">
-      <div class="pointer-events-auto">
-        <div class="text-[15px] tracking-[0.18em] text-ink/80">
-          <span class="inline-block align-middle">U</span>
-          <span class="inline-block w-6 h-px bg-sand/60 align-middle mx-3"></span>
-          <span class="inline-block align-middle">CINEMATIC</span>
+<body class="font-serif antialiased">
+  <!-- Minimal header (logo only) -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-6xl px-6 sm:px-10 py-6">
+      <div class="flex items-center justify-between">
+        <div class="text-[13px] tracking-[0.28em] text-ink/70">
+          U-CHANNEL
+        </div>
+        <div class="hidden sm:block text-[11px] tracking-[0.24em] text-ink/40">
+          MODERN EDITORIAL & NATURE
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero (100vh, video background) -->
+  <!-- 1) HERO (Magazine Cover) -->
   <main>
-    <section class="relative h-screen w-full overflow-hidden">
-      <!-- Background video (placeholder) -->
-      <video
-        class="hero-media absolute inset-0 h-full w-full object-cover"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-label="夕陽の海岸線をゆっくり走るキャンピングカーのイメージ（プレースホルダー）"
-      >
-        <!-- Placeholder video source -->
-        <source src="https://cdn.coverr.co/videos/coverr-sunset-on-the-beach-9713/1080p.mp4" type="video/mp4" />
-      </video>
+    <section class="relative min-h-screen pt-24">
+      <div class="mx-auto max-w-6xl px-6 sm:px-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+          <!-- Left: Big serif copy (as graphic) -->
+          <div class="lg:col-span-5 flex">
+            <div class="relative w-full">
+              <!-- Vertical label (editorial) -->
+              <div class="absolute -left-2 top-2 hidden lg:block tategaki text-[11px] tracking-[0.28em] text-ink/40">
+                CINEMATIC • JOURNAL • VANLIFE • JAPAN
+              </div>
 
-      <!-- Soft overlay for legibility (still minimal) -->
-      <div class="absolute inset-0 bg-black/35"></div>
+              <div class="mt-10 lg:mt-16">
+                <div class="reveal-up">
+                  <p class="text-[11px] tracking-[0.34em] text-ink/50 mb-8">
+                    ISSUE 01 / A QUIET ROAD
+                  </p>
+                </div>
 
-      <!-- Hero content -->
-      <div class="relative z-10 h-full flex items-center justify-center px-6 sm:px-10">
-        <div class="text-center" data-aos="fade-up" data-aos-duration="1600" data-aos-delay="150">
-          <p class="text-white/90 text-[12px] sm:text-[13px] tracking-[0.35em] uppercase mb-6">
-            Organic Minimal / Sunset Coastline
-          </p>
-          <h1 class="text-white font-medium text-3xl sm:text-5xl leading-[1.35] tracking-[0.06em]">
-            ただ、流れる時間の中に。
-          </h1>
-          <div class="mt-10 flex justify-center">
-            <span class="inline-block w-20 h-px bg-sand/70"></span>
-          </div>
-        </div>
-      </div>
+                <h1 class="reveal-up font-serif2 text-[46px] sm:text-[72px] leading-[1.05] tracking-[0.02em] text-ink">
+                  静寂を、<br class="hidden sm:block" />旅する。
+                </h1>
 
-      <!-- Subtle bottom hint -->
-      <div class="absolute bottom-10 left-0 right-0 flex justify-center">
-        <div class="text-white/70 text-[12px] tracking-[0.25em]" data-aos="fade-up" data-aos-duration="1600" data-aos-delay="600">
-          SCROLL
-        </div>
-      </div>
-    </section>
+                <div class="reveal-up mt-10 max-w-md">
+                  <p class="text-ink/70 leading-[2.1] text-[15px] sm:text-[16px]">
+                    速さより、余白。情報より、空気。<br />
+                    日本の四季と、移動する暮らしの物語を、<br />
+                    雑誌のように丁寧に綴ります。
+                  </p>
+                </div>
 
-    <!-- Philosophy -->
-    <section class="bg-paper">
-      <div class="mx-auto max-w-3xl px-6 sm:px-10 py-24 sm:py-36">
-        <div class="text-center" data-aos="fade-up" data-aos-duration="1600">
-          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-10">
-            Philosophy
-          </p>
-          <div class="mx-auto max-w-2xl text-[16px] sm:text-[18px] leading-[2.2] text-ink/85">
-            <p class="mb-8">
-              旅は、速さではなく余白でできている。
-              風の匂い、潮の湿度、遠くの灯り。
-              画面の外にある静けさまで、そっと映したい。
-            </p>
-            <p class="mb-8">
-              自由は、何かを増やすことより、
-              いらないものを手放した先に残るもの。
-              ゆっくりと進むほど、世界はやわらかく輪郭を取り戻す。
-            </p>
-            <p>
-              だから今日も、夕陽の方向へ。
-              時間がほどける瞬間を、記録ではなく、手触りとして。
-            </p>
-          </div>
-
-          <div class="mt-14 flex justify-center">
-            <span class="inline-block w-24 h-px bg-sand/55"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Works -->
-    <section class="bg-paper">
-      <div class="mx-auto max-w-5xl px-6 sm:px-10 py-24 sm:py-36">
-        <div class="text-center mb-16 sm:mb-24" data-aos="fade-up" data-aos-duration="1600">
-          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-6">
-            Works
-          </p>
-          <h2 class="text-[18px] sm:text-[20px] tracking-[0.18em] text-ink/85">
-            Cinematic Journal
-          </h2>
-        </div>
-
-        <div class="space-y-14 sm:space-y-20">
-          <!-- Video 1 -->
-          <div data-aos="fade-up" data-aos-duration="1700">
-            <div class="video-frame shadow-[0_20px_80px_rgba(0,0,0,0.06)]">
-              <div class="aspect-video">
-                <!-- Replace VIDEO_ID_1 with your YouTube video ID -->
-                <iframe
-                  class="w-full h-full"
-                  src="https://www.youtube.com/embed/VIDEO_ID_1"
-                  title="Cinematic Journal 01"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+                <div class="reveal-up mt-12 flex items-center gap-4">
+                  <span class="inline-block w-10 h-[2px] bg-moss/70"></span>
+                  <span class="text-[11px] tracking-[0.30em] text-ink/45">EDITORIAL CINEMA</span>
+                </div>
               </div>
             </div>
-            <div class="mt-6 text-center text-[12px] tracking-[0.22em] text-ink/55">
-              01 — A quiet drive along the coastline
-            </div>
           </div>
 
-          <!-- Video 2 -->
-          <div data-aos="fade-up" data-aos-duration="1700" data-aos-delay="150">
-            <div class="video-frame shadow-[0_20px_80px_rgba(0,0,0,0.06)]">
-              <div class="aspect-video">
-                <!-- Replace VIDEO_ID_2 with your YouTube video ID -->
-                <iframe
-                  class="w-full h-full"
-                  src="https://www.youtube.com/embed/VIDEO_ID_2"
-                  title="Cinematic Journal 02"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+          <!-- Right: Tall video area -->
+          <div class="lg:col-span-7">
+            <div class="reveal-left relative">
+              <div class="frame">
+                <div class="relative aspect-[10/13] bg-black overflow-hidden">
+                  <!-- Video placeholder (camping car + nature vibe) -->
+                  <video
+                    class="absolute inset-0 h-full w-full object-cover"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    aria-label="キャンピングカーと自然の縦長映像（プレースホルダー）"
+                  >
+                    <source src="https://cdn.coverr.co/videos/coverr-driving-through-mountains-9717/1080p.mp4" type="video/mp4" />
+                  </video>
+
+                  <!-- Minimal overlay for editorial mood -->
+                  <div class="absolute inset-0 bg-black/20"></div>
+
+                  <!-- Corner caption -->
+                  <div class="absolute bottom-5 left-6 right-6 flex items-end justify-between">
+                    <div class="text-white/85 text-[12px] tracking-[0.22em]">
+                      SUNSET COASTLINE / JAPAN
+                    </div>
+                    <div class="hidden sm:block tategaki text-white/70 text-[11px] tracking-[0.26em]">
+                      風・潮・灯り
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Offset “paper” behind to create depth -->
+              <div class="hidden lg:block absolute -z-10 -right-6 -bottom-6 w-[88%] h-[86%] bg-linen rounded-[28px]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll cue (thin line) -->
+        <div class="mt-14 lg:mt-16 pb-10">
+          <div class="reveal-up flex items-center gap-6">
+            <div class="rule flex-1"></div>
+            <div class="text-[11px] tracking-[0.30em] text-ink/45">SCROLL</div>
+            <div class="rule flex-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) ABOUT (編集後記風) -->
+    <section class="relative bg-linen">
+      <div class="mx-auto max-w-6xl px-6 sm:px-10 py-20 sm:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <!-- Left text -->
+          <div class="lg:col-span-6">
+            <div class="reveal-up">
+              <p class="text-[11px] tracking-[0.34em] text-ink/50 mb-6">ABOUT / EDITOR’S NOTE</p>
+            </div>
+
+            <div class="reveal-up">
+              <h2 class="font-serif2 text-[30px] sm:text-[40px] leading-[1.25] tracking-[0.02em] text-ink">
+                旅の拠点が動くと、<br class="hidden sm:block" />物語の密度が増す。
+              </h2>
+            </div>
+
+            <div class="reveal-up mt-10 max-w-xl">
+              <p class="text-ink/75 leading-[2.15] text-[15px] sm:text-[16px]">
+                U-channelは、キャンピングカーという移動する拠点を持ち、
+                日本の四季と物語を記録するシネマティック・メディアです。<br /><br />
+                私たちが提供するのは情報だけでなく、その場所の空気感そのものです。
+                朝の冷気、焚き火の匂い、濡れたアスファルトの反射。
+                画面を超えて、手触りが伝わる映像を目指しています。
+              </p>
+            </div>
+
+            <!-- Side vertical accent (very minimal use) -->
+            <div class="reveal-up mt-12 flex items-start gap-6">
+              <div class="tategaki text-[11px] tracking-[0.26em] text-ink/35">
+                NATURE<br />&amp;<br />CINEMA
+              </div>
+              <div class="text-[12px] tracking-[0.22em] text-ink/50 pt-1">
+                余白を編集し、時間を収録する。
               </div>
             </div>
-            <div class="mt-6 text-center text-[12px] tracking-[0.22em] text-ink/55">
-              02 — Time dissolves at sunset
+          </div>
+
+          <!-- Right still image -->
+          <div class="lg:col-span-6">
+            <div class="reveal-right relative">
+              <div class="paper-card overflow-hidden">
+                <img
+                  src="https://picsum.photos/1200/900?random=11"
+                  alt="自然と旅の静止画（プレースホルダー）"
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Asymmetric overlap label -->
+              <div class="hidden sm:block absolute -left-6 -bottom-6 bg-paper px-6 py-4 border border-ink/10 rounded-[18px] shadow-thin">
+                <div class="text-[11px] tracking-[0.30em] text-ink/55">FIELD NOTE</div>
+                <div class="mt-2 text-[13px] leading-[1.8] text-ink/70">
+                  記録ではなく、<br />感情の保存。
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="mt-20 sm:mt-28 flex justify-center" data-aos="fade-up" data-aos-duration="1600">
-          <span class="inline-block w-24 h-px bg-sand/50"></span>
+        <!-- Divider -->
+        <div class="mt-16 sm:mt-20 reveal-up">
+          <div class="rule"></div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- 3) THE NUMBERS (Typography as trust) -->
     <section class="bg-paper">
-      <div class="mx-auto max-w-3xl px-6 sm:px-10 py-24 sm:py-36">
-        <div class="text-center" data-aos="fade-up" data-aos-duration="1600">
-          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-10">
-            Contact
-          </p>
-
-          <div class="space-y-8">
-            <a
-              href="mailto:hello@example.com"
-              class="inline-block text-ink/80 hover:text-ink transition-colors duration-300 text-[16px] sm:text-[18px] tracking-[0.06em]"
-            >
-              hello@example.com
-            </a>
-
-            <div class="flex justify-center">
-              <a
-                href="https://instagram.com/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Instagram"
-                class="group inline-flex items-center justify-center"
-              >
-                <!-- Minimal Instagram icon (inline SVG) -->
-                <svg
-                  class="w-6 h-6 text-ink/65 group-hover:text-ink transition-colors duration-300"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.5 2.75h9A4.75 4.75 0 0 1 21.25 7.5v9A4.75 4.75 0 0 1 16.5 21.25h-9A4.75 4.75 0 0 1 2.75 16.5v-9A4.75 4.75 0 0 1 7.5 2.75Z"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M12 16.2A4.2 4.2 0 1 0 12 7.8a4.2 4.2 0 0 0 0 8.4Z"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                  />
-                  <path
-                    d="M17.35 6.65h.01"
-                    stroke="currentColor"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </a>
+      <div class="mx-auto max-w-6xl px-6 sm:px-10 py-20 sm:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <!-- Editorial title (vertical) -->
+          <div class="lg:col-span-3">
+            <div class="reveal-up tategaki text-ink/50 text-[12px] tracking-[0.30em]">
+              THE NUMBERS
             </div>
-
-            <p class="text-[12px] tracking-[0.20em] text-ink/45">
-              ゆっくり、静かに。必要なときにだけ。
-            </p>
           </div>
 
-          <div class="mt-16 flex justify-center">
-            <span class="inline-block w-20 h-px bg-sand/45"></span>
+          <!-- Big numbers -->
+          <div class="lg:col-span-9 space-y-14 sm:space-y-16">
+            <div class="reveal-left grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+              <div class="md:col-span-7">
+                <div class="font-serif2 text-[56px] sm:text-[88px] leading-[0.95] text-ink">
+                  100,000
+                </div>
+                <div class="mt-3 text-[12px] tracking-[0.28em] text-ink/50">
+                  GOAL / SUBSCRIBERS
+                </div>
+              </div>
+              <div class="md:col-span-5 md:pb-2 text-ink/70 leading-[2.05] text-[14px]">
+                数字は目的ではなく、物語が届いた証。<br />
+                次の景色へ、静かに積み上げています。
+              </div>
+            </div>
+
+            <div class="reveal-right grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+              <div class="md:col-span-6 md:order-2">
+                <div class="font-serif2 text-[44px] sm:text-[70px] leading-[0.95] text-ink">
+                  Cinematic
+                </div>
+                <div class="mt-3 text-[12px] tracking-[0.28em] text-ink/50">
+                  QUALITY / EDITED LIKE A MAGAZINE
+                </div>
+              </div>
+              <div class="md:col-span-6 md:order-1 md:pb-2 text-ink/70 leading-[2.05] text-[14px]">
+                余白、音、光。<br />
+                “見やすい”より“感じる”へ。
+              </div>
+            </div>
+
+            <div class="reveal-left grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+              <div class="md:col-span-7">
+                <div class="font-serif2 text-[52px] sm:text-[84px] leading-[0.95] text-ink">
+                  35–50
+                </div>
+                <div class="mt-3 text-[12px] tracking-[0.28em] text-ink/50">
+                  CORE AUDIENCE
+                </div>
+              </div>
+              <div class="md:col-span-5 md:pb-2 text-ink/70 leading-[2.05] text-[14px]">
+                旅・暮らし・道具。<br />
+                実在感を求める目線に、誠実に応えます。
+              </div>
+            </div>
+
+            <!-- Minimal accent (one small dot only) -->
+            <div class="reveal-up flex items-center gap-3 pt-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-moss/80"></span>
+              <span class="text-[12px] tracking-[0.22em] text-ink/45">TRUST, COMPOSED.</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer (quiet) -->
+    <!-- 4) SELECTED STORIES (Editorial cards with story) -->
+    <section class="relative bg-paper">
+      <div class="mx-auto max-w-6xl px-6 sm:px-10 py-20 sm:py-28">
+        <div class="reveal-up flex items-end justify-between gap-8">
+          <div>
+            <p class="text-[11px] tracking-[0.34em] text-ink/50 mb-5">SELECTED STORIES</p>
+            <h2 class="font-serif2 text-[30px] sm:text-[42px] leading-[1.15] text-ink">
+              画面の外まで、<br class="hidden sm:block" />物語にする。
+            </h2>
+          </div>
+          <div class="hidden md:block text-[12px] tracking-[0.22em] text-ink/45">
+            SHORT NOTE / 2–3 LINES
+          </div>
+        </div>
+
+        <div class="mt-14 sm:mt-18 space-y-16 sm:space-y-20">
+          <!-- Story 1 (asymmetric: video left, text right overlapping) -->
+          <article class="relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+              <div class="lg:col-span-7 reveal-left">
+                <div class="frame">
+                  <div class="aspect-video bg-black relative">
+                    <!-- Replace VIDEO_ID_1 -->
+                    <iframe
+                      class="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/VIDEO_ID_1"
+                      title="Selected Story 01"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lg:col-span-5 reveal-right">
+                <div class="relative lg:-ml-16">
+                  <div class="paper-card p-8 sm:p-10">
+                    <div class="text-[11px] tracking-[0.34em] text-ink/50">STORY 01</div>
+                    <h3 class="mt-4 font-serif2 text-[22px] sm:text-[28px] leading-[1.25] text-ink">
+                      冬の北海道、氷点下の朝。
+                    </h3>
+                    <p class="mt-6 text-ink/75 leading-[2.1] text-[14px] sm:text-[15px]">
+                      コーヒーの湯気と、エンジンの音。<br />
+                      透明な空気の中で、時間だけが静かに進む。
+                    </p>
+
+                    <div class="mt-10 flex items-center gap-4">
+                      <span class="inline-block w-10 h-[2px] bg-sunset/70"></span>
+                      <span class="text-[11px] tracking-[0.30em] text-ink/45">WATCH / YOUTUBE</span>
+                    </div>
+                  </div>
+
+                  <!-- Small vertical note (editorial) -->
+                  <div class="hidden lg:block absolute -right-8 top-10 tategaki text-[11px] tracking-[0.26em] text-ink/35">
+                    FIELD RECORD
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Story 2 (asymmetric: text left, video right with offset) -->
+          <article class="relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+              <div class="lg:col-span-5 reveal-left">
+                <div class="relative lg:mr-10">
+                  <div class="paper-card p-8 sm:p-10 bg-linen">
+                    <div class="text-[11px] tracking-[0.34em] text-ink/50">STORY 02</div>
+                    <h3 class="mt-4 font-serif2 text-[22px] sm:text-[28px] leading-[1.25] text-ink">
+                      夕陽の海岸線、ゆっくりと。
+                    </h3>
+                    <p class="mt-6 text-ink/75 leading-[2.1] text-[14px] sm:text-[15px]">
+                      波の反射が、車内の壁を淡く染める。<br />
+                      ほんの少しの沈黙が、旅を豊かにする。
+                    </p>
+
+                    <div class="mt-10 flex items-center gap-4">
+                      <span class="inline-block w-10 h-[2px] bg-moss/70"></span>
+                      <span class="text-[11px] tracking-[0.30em] text-ink/45">WATCH / YOUTUBE</span>
+                    </div>
+                  </div>
+
+                  <div class="absolute -z-10 -left-6 -bottom-6 w-[88%] h-[78%] bg-paper border border-ink/10 rounded-[26px]"></div>
+                </div>
+              </div>
+
+              <div class="lg:col-span-7 reveal-right">
+                <div class="frame">
+                  <div class="aspect-video bg-black relative">
+                    <!-- Replace VIDEO_ID_2 -->
+                    <iframe
+                      class="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/VIDEO_ID_2"
+                      title="Selected Story 02"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+
+                <div class="mt-6 hidden sm:flex items-center justify-end gap-3 text-[11px] tracking-[0.28em] text-ink/45">
+                  <span class="inline-block w-10 h-px bg-ink/20"></span>
+                  CINEMATIC JOURNAL
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-20 reveal-up">
+          <div class="rule"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) PARTNER / CONTACT -->
+    <section class="relative bg-linen">
+      <div class="mx-auto max-w-6xl px-6 sm:px-10 py-20 sm:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div class="lg:col-span-4 reveal-up">
+            <div class="tategaki text-[12px] tracking-[0.30em] text-ink/50">
+              PARTNER<br />&amp;<br />CONTACT
+            </div>
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="reveal-right paper-card p-10 sm:p-14">
+              <h2 class="font-serif2 text-[26px] sm:text-[34px] leading-[1.25] text-ink">
+                共に物語を紡ぐ<br class="hidden sm:block" />パートナーへ。
+              </h2>
+
+              <p class="mt-8 text-ink/75 leading-[2.15] text-[15px] sm:text-[16px] max-w-2xl">
+                私たちの旅と世界観に共感し、共に物語を紡ぐパートナーを募集しています。<br />
+                観光・地域・宿泊・アウトドア・プロダクトなど、過度な広告ではなく、
+                “空気感まで伝える”表現をご一緒できる方へ。
+              </p>
+
+              <div class="mt-12 flex flex-col sm:flex-row sm:items-center gap-6">
+                <a href="mailto:hello@example.com" class="text-ink/80 hover:text-ink transition-colors duration-300 text-[16px] sm:text-[18px] tracking-[0.06em]">
+                  hello@example.com
+                </a>
+
+                <div class="hidden sm:block w-10 h-px bg-ink/20"></div>
+
+                <a href="https://instagram.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-3 text-ink/60 hover:text-ink transition-colors duration-300">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 2.75h9A4.75 4.75 0 0 1 21.25 7.5v9A4.75 4.75 0 0 1 16.5 21.25h-9A4.75 4.75 0 0 1 2.75 16.5v-9A4.75 4.75 0 0 1 7.5 2.75Z" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M12 16.2A4.2 4.2 0 1 0 12 7.8a4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.4"/>
+                    <path d="M17.35 6.65h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                  </svg>
+                  <span class="text-[12px] tracking-[0.28em]">INSTAGRAM</span>
+                </a>
+              </div>
+
+              <div class="mt-14 flex items-center gap-4">
+                <span class="inline-block w-10 h-[2px] bg-moss/70"></span>
+                <span class="text-[11px] tracking-[0.30em] text-ink/45">LET’S EDIT A QUIET STORY.</span>
+              </div>
+            </div>
+
+            <div class="reveal-up mt-10 text-[11px] tracking-[0.24em] text-ink/45">
+              ※ メールとInstagramリンクは実際のものに差し替えてください。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="bg-paper">
-      <div class="mx-auto max-w-5xl px-6 sm:px-10 pb-16">
-        <div class="text-center text-[11px] tracking-[0.22em] text-ink/35">
-          © <span id="y"></span> — Quietly made for the long road.
+      <div class="mx-auto max-w-6xl px-6 sm:px-10 py-14">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-[0.24em] text-ink/40">
+          <div>© <span id="y"></span> U-CHANNEL</div>
+          <div class="text-ink/35">QUIET CINEMATIC JOURNAL / JAPAN</div>
         </div>
       </div>
     </footer>
   </main>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      once: true,
-      offset: 120,
-      duration: 1600,
-      easing: "cubic-bezier(.2,.8,.2,1)"
-    });
-
-    // Subtle parallax drift for hero video (very slow)
-    (function () {
-      const media = document.querySelector(".hero-media");
-      if (!media) return;
-
-      const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-
-      const onScroll = () => {
-        const y = window.scrollY || 0;
-        // Very small movement, intentionally restrained
-        const t = clamp(y / 900, 0, 1);
-        const translate = (t * 18); // px
-        media.style.transform = `translate3d(0, ${translate}px, 0) scale(1.03)`;
-      };
-
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-    })();
-
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // ScrollReveal: slow editorial motion (no flashy effects)
+    const base = {
+      distance: "18px",
+      duration: 1200,
+      easing: "cubic-bezier(.2,.8,.2,1)",
+      interval: 120,
+      opacity: 0,
+      cleanup: true
+    };
+
+    ScrollReveal().reveal(".reveal-up", { ...base, origin: "bottom" });
+    ScrollReveal().reveal(".reveal-left", { ...base, origin: "left" });
+    ScrollReveal().reveal(".reveal-right", { ...base, origin: "right" });
+
+    // Respect reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      ScrollReveal().destroy();
+    }
   </script>
 </body>
 </html>
