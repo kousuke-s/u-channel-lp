@@ -3,496 +3,315 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>うーちゃんねる / U-channel｜キャンピングカー旅のリアル</title>
-  <meta name="description" content="30代の家族3人がキャンピングカーで日本を旅する、車中泊・キャンプ・旅のリアルを発信。週末旅、全国制覇、オーナーレビューも。" />
+  <title>Brand Landing | Organic Minimal — Sunset Coastline</title>
+  <meta name="description" content="自由、自然、ゆっくり流れる時間。映像クリエイターのブランドサイト。" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="うーちゃんねる / U-channel｜キャンピングカー旅のリアル" />
-  <meta property="og:description" content="30代の家族3人がキャンピングカーで日本を旅する、車中泊・キャンプ・旅のリアル。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ja_JP" />
+  <!-- Google Fonts (Mincho / Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Pick one: Noto Serif JP / Shippori Mincho -->
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#333333",
+            sand: "#C4A484",
+            paper: "#ffffff"
+          },
+          fontFamily: {
+            serifjp: ['"Shippori Mincho"', "serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 
   <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#121824;
-      --muted:#9fb0c2;
-      --text:#eaf1f7;
-      --accent:#4dd0e1;
-      --accent2:#7c4dff;
-      --line:rgba(255,255,255,.08);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --max:1100px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(124,77,255,.28), transparent 60%),
-        radial-gradient(900px 500px at 85% 15%, rgba(77,208,225,.22), transparent 55%),
-        linear-gradient(180deg, #070a0f, var(--bg) 40%, #070a0f);
-      color:var(--text);
-      line-height:1.7;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 72px;}
-    header{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(7,10,15,.55);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto; padding:12px 18px;
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-    }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow:0 0 0 4px rgba(77,208,225,.12);
-    }
-    .brand strong{letter-spacing:.2px}
-    .navlinks{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
-    .navlinks a{
-      text-decoration:none; color:var(--muted);
-      padding:8px 10px; border-radius:12px;
-    }
-    .navlinks a:hover{background:rgba(255,255,255,.05); color:var(--text)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      text-decoration:none;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.18)}
-    .btn.primary{
-      border-color: rgba(77,208,225,.35);
-      background: linear-gradient(135deg, rgba(77,208,225,.18), rgba(124,77,255,.18));
-    }
-    .hero{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:22px;
-      padding:44px 0 12px;
-      align-items:center;
-    }
-    .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:7px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:13px;
-    }
-    h1{margin:14px 0 10px; font-size:42px; line-height:1.15; letter-spacing:-.4px}
-    .lead{color:var(--muted); font-size:16px; margin:0 0 18px}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .panel{padding:18px}
-    .stats{
-      display:grid; grid-template-columns: repeat(3,1fr); gap:10px;
-      margin-top:14px;
-    }
-    .stat{
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-    }
-    .stat b{display:block; font-size:18px}
-    .stat span{color:var(--muted); font-size:12px}
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top:18px;
-    }
-    .feature{
-      padding:16px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.16);
-    }
-    .feature h3{margin:2px 0 6px; font-size:16px}
-    .feature p{margin:0; color:var(--muted); font-size:14px}
-    section{margin-top:34px}
-    .sec-title{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:12px}
-    .sec-title h2{margin:0; font-size:22px}
-    .sec-title p{margin:0; color:var(--muted); font-size:14px}
-    .two{
-      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
-    }
-    .list{
-      display:flex; flex-direction:column; gap:10px;
-      padding:14px;
-    }
-    .li{
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.14);
-    }
-    .li b{display:block}
-    .li span{color:var(--muted); font-size:14px}
-    .embed{
-      border-radius: 16px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.20);
-    }
-    iframe{width:100%; aspect-ratio:16/9; border:0}
-    .faq details{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.14);
-      border-radius:16px;
-      padding:12px 14px;
-    }
-    .faq summary{cursor:pointer; font-weight:600}
-    .faq p{color:var(--muted); margin:10px 0 0}
-    footer{
-      margin-top:44px;
-      padding-top:22px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .small{font-size:12px; color:var(--muted)}
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.12);
-      color:var(--muted); font-size:12px;
+    /* Minimal, organic motion */
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color:#333333; }
+    ::selection { background: rgba(196,164,132,.25); }
+
+    /* Slow parallax-like drift for the hero media (very subtle) */
+    .hero-media {
+      transform: translateZ(0);
+      will-change: transform;
     }
 
-    @media (max-width: 920px){
-      .hero{grid-template-columns: 1fr; padding-top:26px}
-      h1{font-size:34px}
-      .grid{grid-template-columns: 1fr}
-      .two{grid-template-columns: 1fr}
-      .stats{grid-template-columns: 1fr}
-      .navlinks{display:none}
+    /* Elegant iframe frame without “decorative” look */
+    .video-frame {
+      background: #fff;
+      border: 1px solid rgba(51,51,51,.10);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    /* AOS default feels snappy; soften it */
+    [data-aos] {
+      transition-timing-function: cubic-bezier(.2,.8,.2,1) !important;
     }
   </style>
 </head>
 
-<body>
-<header>
-  <div class="nav">
-    <a class="brand" href="#top">
-      <span class="dot"></span>
-      <strong>うーちゃんねる / U-channel</strong>
-    </a>
-
-    <nav class="navlinks" aria-label="ページ内リンク">
-      <a href="#about">チャンネル概要</a>
-      <a href="#series">人気シリーズ</a>
-      <a href="#videos">最新動画</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">お問い合わせ</a>
-    </nav>
-
-    <a class="btn primary" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw?sub_confirmation=1" target="_blank" rel="noopener">
-      ▶ チャンネル登録
-    </a>
-  </div>
-</header>
-
-<main id="top" class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div>
-      <div class="pill">🚐 家族3人のキャンピングカー旅 × 週末バンライフ</div>
-      <h1>頑張りすぎない<br>車中泊旅のリアルを、まっすぐ届ける</h1>
-      <p class="lead">
-        30代の家族がキャンピングカーで日本を旅しながら、車中泊・キャンプ・旅先の空気感をそのまま残します。<br>
-        旅の楽しさだけじゃなく、移動の大変さやトラブルも含めた現実を、等身大で。 
-      </p>
-
-      <div class="cta">
-        <a class="btn primary" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw?sub_confirmation=1" target="_blank" rel="noopener">
-          ✅ 無料でチャンネル登録
-        </a>
-        <a class="btn" href="#videos">最新動画を見る</a>
-        <a class="btn" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw/playlists" target="_blank" rel="noopener">再生リストへ</a>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <b>車中泊・キャンプ・旅</b>
-          <span>家族の目線で、リアル重視</span>
-        </div>
-        <div class="stat">
-          <b>全国制覇を目指す</b>
-          <span>週末を積み重ねて進む旅</span>
-        </div>
-        <div class="stat">
-          <b>オーナー目線</b>
-          <span>キャンピングカーの使い方・実感</span>
-        </div>
-      </div>
-
-      <p class="small" style="margin-top:10px;">
-        ※ 上の説明はチャンネル紹介文（家族で日本を旅するキャンピングカー体験）をベースにLP化しています。 
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="panel">
-        <div class="badge">📺 チャンネルプレビュー</div>
-        <div class="embed" style="margin-top:10px;">
-          <iframe
-            src="https://www.youtube.com/embed?listType=user_uploads&list=UCi_FbdLUkOIP2nOy436WtRw"
-            title="うーちゃんねる / U-channel の最新動画"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <div class="grid">
-          <div class="feature">
-            <h3>旅の空気感</h3>
-            <p>景色、食、道中の会話。作り込みすぎず、そのまま残す。</p>
-          </div>
-          <div class="feature">
-            <h3>現実のノウハウ</h3>
-            <p>移動・駐車・寒さ暑さ・失敗談。役に立つリアル。</p>
-          </div>
-          <div class="feature">
-            <h3>家族で楽しむ</h3>
-            <p>子連れ・家族旅の目線で、無理しない旅の形を共有。</p>
-          </div>
-        </div>
-
-        <!-- Optional: public stats (caution) -->
-        <div style="margin-top:14px" class="small">
-          参考：外部サイト推定の数字を載せたい場合はここに追記できます（例：登録者・再生回数など）。推定値は誤差があるため、LPに載せるなら公式のYouTube Studio数値推奨。
+<body class="font-serifjp antialiased">
+  <!-- Header (logo only) -->
+  <header class="fixed top-0 left-0 right-0 z-30 pointer-events-none">
+    <div class="mx-auto max-w-5xl px-6 sm:px-10 py-6">
+      <div class="pointer-events-auto">
+        <div class="text-[15px] tracking-[0.18em] text-ink/80">
+          <span class="inline-block align-middle">U</span>
+          <span class="inline-block w-6 h-px bg-sand/60 align-middle mx-3"></span>
+          <span class="inline-block align-middle">CINEMATIC</span>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="sec-title">
-      <h2>チャンネル概要</h2>
-      <p>何を見られる？どんな人におすすめ？</p>
-    </div>
+  <!-- Hero (100vh, video background) -->
+  <main>
+    <section class="relative h-screen w-full overflow-hidden">
+      <!-- Background video (placeholder) -->
+      <video
+        class="hero-media absolute inset-0 h-full w-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="夕陽の海岸線をゆっくり走るキャンピングカーのイメージ（プレースホルダー）"
+      >
+        <!-- Placeholder video source -->
+        <source src="https://cdn.coverr.co/videos/coverr-sunset-on-the-beach-9713/1080p.mp4" type="video/mp4" />
+      </video>
 
-    <div class="two">
-      <div class="card">
-        <div class="list">
-          <div class="li">
-            <b>テーマ</b>
-            <span>30代の家族3人がキャンピングカーで日本を旅する、車中泊・キャンプ・旅のリアル。</span>
-          </div>
-          <div class="li">
-            <b>コンテンツ例</b>
-            <span>週末バンライフ／全国制覇の旅／旅先のスポット／トラブルや失敗談／オーナー目線の紹介。</span>
-          </div>
-          <div class="li">
-            <b>このLPで約束すること</b>
-            <span>良いところも大変なところも隠さず、等身大の旅として届ける。</span>
-          </div>
-        </div>
-      </div>
+      <!-- Soft overlay for legibility (still minimal) -->
+      <div class="absolute inset-0 bg-black/35"></div>
 
-      <div class="card">
-        <div class="list">
-          <div class="li">
-            <b>こんな人におすすめ</b>
-            <span>キャンピングカーが気になる／車中泊してみたい／家族旅のリアルが知りたい／週末に旅したい。</span>
-          </div>
-          <div class="li">
-            <b>見終わったあとに得られること</b>
-            <span>行き先のヒントだけでなく、移動や準備の現実感、旅の判断基準が増える。</span>
-          </div>
-          <div class="li">
-            <b>更新の楽しみ方</b>
-            <span>再生リストでシリーズ追い → 最新動画で今の旅の流れを追うのがおすすめ。</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERIES -->
-  <section id="series">
-    <div class="sec-title">
-      <h2>人気シリーズ</h2>
-      <p>初見でも入りやすい導線</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="panel">
-          <h3 style="margin:0 0 6px">全国制覇の旅</h3>
-          <p class="lead" style="margin:0 0 12px">週末を積み重ねて日本を進む。距離も時間もリアル。</p>
-          <a class="btn" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw/playlists" target="_blank" rel="noopener">再生リストを見る</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="panel">
-          <h3 style="margin:0 0 6px">車中泊・キャンプの現実</h3>
-          <p class="lead" style="margin:0 0 12px">寒さ暑さ、駐車、準備、失敗。知って得する“現場”。</p>
-          <a class="btn" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw/videos" target="_blank" rel="noopener">動画一覧へ</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="panel">
-          <h3 style="margin:0 0 6px">オーナー目線の紹介</h3>
-          <p class="lead" style="margin:0 0 12px">購入後・運用後だから話せるポイントを整理。</p>
-          <a class="btn" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw/playlists" target="_blank" rel="noopener">関連リストへ</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEOS -->
-  <section id="videos">
-    <div class="sec-title">
-      <h2>最新動画</h2>
-      <p>ここから見てもOK</p>
-    </div>
-
-    <div class="two">
-      <div class="card">
-        <div class="panel">
-          <div class="badge">▶ 最新アップロード</div>
-          <div class="embed" style="margin-top:10px;">
-            <iframe
-              src="https://www.youtube.com/embed?listType=user_uploads&list=UCi_FbdLUkOIP2nOy436WtRw"
-              title="最新アップロード（自動）"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-          <p class="small" style="margin:10px 0 0;">YouTube側で自動的に最新動画が表示されます。</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="panel">
-          <div class="badge">📌 チャンネル紹介</div>
-          <div class="embed" style="margin-top:10px;">
-            <iframe
-              src="https://www.youtube.com/embed/videoseries?list=UUUCi_FbdLUkOIP2nOy436WtRw"
-              title="アップロード一覧"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-          <p class="small" style="margin:10px 0 0;">
-            ※環境により表示挙動が変わるため、LP公開前にスマホ/PCで必ず確認してください。
+      <!-- Hero content -->
+      <div class="relative z-10 h-full flex items-center justify-center px-6 sm:px-10">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="1600" data-aos-delay="150">
+          <p class="text-white/90 text-[12px] sm:text-[13px] tracking-[0.35em] uppercase mb-6">
+            Organic Minimal / Sunset Coastline
           </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:14px;">
-      <div class="panel">
-        <h3 style="margin:0 0 8px;">最短でハマる見方（おすすめ導線）</h3>
-        <div class="grid">
-          <div class="feature">
-            <h3>① 再生リスト</h3>
-            <p>シリーズで追うと、旅の流れが一気に掴める。</p>
-          </div>
-          <div class="feature">
-            <h3>② 最新動画</h3>
-            <p>今どこを旅してるか、現状がわかる。</p>
-          </div>
-          <div class="feature">
-            <h3>③ 気になるテーマ検索</h3>
-            <p>車中泊、雪中、京都、四国…気になるワードで掘る。</p>
+          <h1 class="text-white font-medium text-3xl sm:text-5xl leading-[1.35] tracking-[0.06em]">
+            ただ、流れる時間の中に。
+          </h1>
+          <div class="mt-10 flex justify-center">
+            <span class="inline-block w-20 h-px bg-sand/70"></span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="sec-title">
-      <h2>FAQ</h2>
-      <p>よくある質問</p>
-    </div>
-
-    <div class="faq" style="display:flex; flex-direction:column; gap:10px;">
-      <details class="card">
-        <summary>キャンピングカー初心者でも参考になりますか？</summary>
-        <div class="panel">
-          <p>なります。理想よりも、実際に困るポイント（駐車・移動・気温・準備）を含めて扱う構成なので、これから始める人ほど刺さりやすいです。</p>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>家族旅の雰囲気が見たいです</summary>
-        <div class="panel">
-          <p>家族3人の等身大の旅が軸なので、旅先の景色だけでなく、移動のテンポや“旅の現実”も含めて楽しめます。 :contentReference[oaicite:1]{index=1}</p>
-        </div>
-      </details>
-
-      <details class="card">
-        <summary>どこから見ればいい？</summary>
-        <div class="panel">
-          <p>再生リスト → 最新動画の順が最短です。気になる旅先があるなら検索で掘るのもおすすめ。</p>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="sec-title">
-      <h2>お問い合わせ</h2>
-      <p>お仕事・コラボ・取材など</p>
-    </div>
-
-    <div class="card">
-      <div class="panel">
-        <p style="margin:0 0 12px; color:var(--muted);">
-          お問い合わせ先は、YouTubeの概要欄やSNSに記載のものをご利用ください。<br>
-          （ここにメールアドレスやフォームURLを追記して使えます）
-        </p>
-
-        <div class="cta">
-          <a class="btn primary" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw" target="_blank" rel="noopener">YouTubeチャンネルへ</a>
-          <a class="btn" href="https://www.youtube.com/channel/UCi_FbdLUkOIP2nOy436WtRw/about" target="_blank" rel="noopener">概要欄を見る</a>
+      <!-- Subtle bottom hint -->
+      <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+        <div class="text-white/70 text-[12px] tracking-[0.25em]" data-aos="fade-up" data-aos-duration="1600" data-aos-delay="600">
+          SCROLL
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
-      <span>© <span id="y"></span> うーちゃんねる / U-channel</span>
-      <span class="small">このLPはチャンネル紹介を元に、視聴→登録の導線最適化を目的に設計</span>
-    </div>
+    <!-- Philosophy -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-3xl px-6 sm:px-10 py-24 sm:py-36">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="1600">
+          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-10">
+            Philosophy
+          </p>
+          <div class="mx-auto max-w-2xl text-[16px] sm:text-[18px] leading-[2.2] text-ink/85">
+            <p class="mb-8">
+              旅は、速さではなく余白でできている。
+              風の匂い、潮の湿度、遠くの灯り。
+              画面の外にある静けさまで、そっと映したい。
+            </p>
+            <p class="mb-8">
+              自由は、何かを増やすことより、
+              いらないものを手放した先に残るもの。
+              ゆっくりと進むほど、世界はやわらかく輪郭を取り戻す。
+            </p>
+            <p>
+              だから今日も、夕陽の方向へ。
+              時間がほどける瞬間を、記録ではなく、手触りとして。
+            </p>
+          </div>
 
-    <p class="small" style="margin-top:10px;">
-      チャンネル紹介の出典：YouTube上のチャンネル紹介（家族でキャンピングカー旅）および関連ページ記述。 :contentReference[oaicite:2]{index=2}
-    </p>
-  </footer>
+          <div class="mt-14 flex justify-center">
+            <span class="inline-block w-24 h-px bg-sand/55"></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</main>
+    <!-- Works -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-5xl px-6 sm:px-10 py-24 sm:py-36">
+        <div class="text-center mb-16 sm:mb-24" data-aos="fade-up" data-aos-duration="1600">
+          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-6">
+            Works
+          </p>
+          <h2 class="text-[18px] sm:text-[20px] tracking-[0.18em] text-ink/85">
+            Cinematic Journal
+          </h2>
+        </div>
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+        <div class="space-y-14 sm:space-y-20">
+          <!-- Video 1 -->
+          <div data-aos="fade-up" data-aos-duration="1700">
+            <div class="video-frame shadow-[0_20px_80px_rgba(0,0,0,0.06)]">
+              <div class="aspect-video">
+                <!-- Replace VIDEO_ID_1 with your YouTube video ID -->
+                <iframe
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/VIDEO_ID_1"
+                  title="Cinematic Journal 01"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="mt-6 text-center text-[12px] tracking-[0.22em] text-ink/55">
+              01 — A quiet drive along the coastline
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div data-aos="fade-up" data-aos-duration="1700" data-aos-delay="150">
+            <div class="video-frame shadow-[0_20px_80px_rgba(0,0,0,0.06)]">
+              <div class="aspect-video">
+                <!-- Replace VIDEO_ID_2 with your YouTube video ID -->
+                <iframe
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/VIDEO_ID_2"
+                  title="Cinematic Journal 02"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="mt-6 text-center text-[12px] tracking-[0.22em] text-ink/55">
+              02 — Time dissolves at sunset
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20 sm:mt-28 flex justify-center" data-aos="fade-up" data-aos-duration="1600">
+          <span class="inline-block w-24 h-px bg-sand/50"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-3xl px-6 sm:px-10 py-24 sm:py-36">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="1600">
+          <p class="text-[12px] tracking-[0.35em] text-ink/60 uppercase mb-10">
+            Contact
+          </p>
+
+          <div class="space-y-8">
+            <a
+              href="mailto:hello@example.com"
+              class="inline-block text-ink/80 hover:text-ink transition-colors duration-300 text-[16px] sm:text-[18px] tracking-[0.06em]"
+            >
+              hello@example.com
+            </a>
+
+            <div class="flex justify-center">
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                class="group inline-flex items-center justify-center"
+              >
+                <!-- Minimal Instagram icon (inline SVG) -->
+                <svg
+                  class="w-6 h-6 text-ink/65 group-hover:text-ink transition-colors duration-300"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.5 2.75h9A4.75 4.75 0 0 1 21.25 7.5v9A4.75 4.75 0 0 1 16.5 21.25h-9A4.75 4.75 0 0 1 2.75 16.5v-9A4.75 4.75 0 0 1 7.5 2.75Z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M12 16.2A4.2 4.2 0 1 0 12 7.8a4.2 4.2 0 0 0 0 8.4Z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M17.35 6.65h.01"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <p class="text-[12px] tracking-[0.20em] text-ink/45">
+              ゆっくり、静かに。必要なときにだけ。
+            </p>
+          </div>
+
+          <div class="mt-16 flex justify-center">
+            <span class="inline-block w-20 h-px bg-sand/45"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (quiet) -->
+    <footer class="bg-paper">
+      <div class="mx-auto max-w-5xl px-6 sm:px-10 pb-16">
+        <div class="text-center text-[11px] tracking-[0.22em] text-ink/35">
+          © <span id="y"></span> — Quietly made for the long road.
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      offset: 120,
+      duration: 1600,
+      easing: "cubic-bezier(.2,.8,.2,1)"
+    });
+
+    // Subtle parallax drift for hero video (very slow)
+    (function () {
+      const media = document.querySelector(".hero-media");
+      if (!media) return;
+
+      const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+      const onScroll = () => {
+        const y = window.scrollY || 0;
+        // Very small movement, intentionally restrained
+        const t = clamp(y / 900, 0, 1);
+        const translate = (t * 18); // px
+        media.style.transform = `translate3d(0, ${translate}px, 0) scale(1.03)`;
+      };
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    })();
+
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
